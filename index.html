@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Reserve aventuras guiadas ao ar livre — trilhas, rapel, acampamento e sobrevivência. Grupos pequenos, guias certificados e segurança de ponta." />
+  <title>Trailhead Collective — Aventuras guiadas ao ar livre</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Sofia+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #faf8f5;
+      --bg-elevated: #ffffff;
+      --ink: #1a1f16;
+      --ink-muted: #4a5245;
+      --forest: #1e3d2f;
+      --forest-mid: #2d5c45;
+      --moss: #3d6b52;
+      --sand: #e8e2d9;
+      --accent: #c45c2a;
+      --accent-hover: #a84d22;
+      --accent-soft: rgba(196, 92, 42, 0.12);
+      --sky: #3a5f7a;
+      --radius: 16px;
+      --radius-sm: 12px;
+      --shadow: 0 8px 32px rgba(26, 31, 22, 0.08);
+      --shadow-lg: 0 24px 64px rgba(26, 31, 22, 0.12);
+      --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+      --font-ui: "Sofia Sans", system-ui, sans-serif;
+      --max: 1120px;
+      --tap: 48px;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-ui);
+      font-size: 1rem;
+      line-height: 1.55;
+      color: var(--ink);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a { color: var(--forest-mid); }
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    select:focus-visible {
+      outline: 3px solid var(--sky);
+      outline-offset: 2px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0.75rem;
+      z-index: 9999;
+      padding: 0.65rem 1rem;
+      background: var(--forest);
+      color: #fff;
+      font-weight: 600;
+      border-radius: 8px;
+    }
+    .skip-link:focus { left: 0.75rem; }
+
+    /* Subtle grain */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.35;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    }
+
+    .shell {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250, 248, 245, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(26, 31, 22, 0.06);
+    }
+    .header-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0.85rem 1.15rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: var(--ink);
+    }
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(145deg, var(--moss), var(--forest));
+      box-shadow: 0 4px 14px rgba(30, 61, 47, 0.35);
+    }
+    .logo-text {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+    }
+    .logo-text span { color: var(--forest-mid); font-weight: 600; }
+
+    .btn {
+      font-family: var(--font-ui);
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      min-height: var(--tap);
+      padding: 0 1.35rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      transition: transform 0.18s var(--ease-out), box-shadow 0.18s, background 0.18s, filter 0.18s;
+      text-decoration: none;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary {
+      background: linear-gradient(180deg, var(--accent), #b35224);
+      color: #fff;
+      box-shadow: 0 6px 24px rgba(196, 92, 42, 0.35);
+    }
+    .btn-primary:hover {
+      filter: brightness(1.05);
+      box-shadow: 0 8px 28px rgba(196, 92, 42, 0.42);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--forest);
+      border: 2px solid rgba(30, 61, 47, 0.2);
+    }
+    .btn-ghost:hover { background: rgba(30, 61, 47, 0.06); }
+    .btn-whatsapp {
+      background: #25d366;
+      color: #0a2918;
+      font-weight: 700;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+    }
+    .btn-whatsapp:hover { filter: brightness(1.05); }
+
+    .header-cta { flex-shrink: 0; }
+    @media (max-width: 520px) {
+      .header-cta .btn { padding: 0 1rem; font-size: 0.88rem; }
+      .logo-text { display: none; }
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: min(92vh, 720px);
+      display: flex;
+      align-items: flex-end;
+      padding: 5.5rem 1.15rem 3rem;
+      color: #fff;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(180deg, rgba(12, 22, 18, 0.35) 0%, rgba(12, 22, 18, 0.55) 45%, rgba(12, 22, 18, 0.88) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: var(--max);
+      margin: 0 auto;
+      width: 100%;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+      backdrop-filter: blur(8px);
+    }
+    .hero-badge .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #6ee7a8;
+      box-shadow: 0 0 12px #6ee7a8;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.1rem, 6vw, 3.35rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin: 0 0 1rem;
+      max-width: 14ch;
+    }
+    .hero-lead {
+      font-size: clamp(1rem, 2.4vw, 1.15rem);
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.88);
+      max-width: 36rem;
+      margin: 0 0 1.75rem;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    .hero-note {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.65);
+      margin: 1rem 0 0;
+    }
+
+    @keyframes hero-rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-animate > * {
+      animation: hero-rise 0.9s var(--ease-out) backwards;
+    }
+    .hero-animate .hero-badge { animation-delay: 0.05s; }
+    .hero-animate h1 { animation-delay: 0.12s; }
+    .hero-animate .hero-lead { animation-delay: 0.2s; }
+    .hero-animate .hero-actions { animation-delay: 0.28s; }
+    .hero-animate .hero-note { animation-delay: 0.36s; }
+
+    /* Sections */
+    .section {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 3.25rem 1.15rem;
+    }
+    .section-head {
+      margin-bottom: 2rem;
+    }
+    .section-kicker {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--moss);
+      margin: 0 0 0.5rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.65rem, 4vw, 2.25rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 0;
+      color: var(--forest);
+    }
+    .section-desc {
+      margin: 0.65rem 0 0;
+      color: var(--ink-muted);
+      max-width: 38rem;
+      font-size: 1.02rem;
+    }
+
+    /* Experience cards */
+    .card-grid {
+      display: grid;
+      gap: 1.25rem;
+    }
+    @media (min-width: 700px) {
+      .card-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .exp-card {
+      background: var(--bg-elevated);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(26, 31, 22, 0.06);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s var(--ease-out), box-shadow 0.25s;
+    }
+    .exp-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+    .exp-card figure {
+      margin: 0;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+    }
+    .exp-card figure img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s var(--ease-out);
+    }
+    .exp-card:hover figure img { transform: scale(1.04); }
+    .exp-card-body { padding: 1.15rem 1.2rem 1.35rem; flex: 1; display: flex; flex-direction: column; }
+    .exp-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.65rem;
+    }
+    .pill {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.3rem 0.55rem;
+      border-radius: 6px;
+      background: var(--sand);
+      color: var(--ink-muted);
+    }
+    .pill-diff-easy { background: rgba(61, 107, 82, 0.15); color: var(--forest); }
+    .pill-diff-mod { background: rgba(196, 92, 42, 0.15); color: var(--accent-hover); }
+    .pill-diff-hard { background: rgba(58, 95, 122, 0.15); color: var(--sky); }
+    .exp-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      margin: 0 0 0.45rem;
+      color: var(--ink);
+    }
+    .exp-card p {
+      margin: 0;
+      font-size: 0.92rem;
+      color: var(--ink-muted);
+      flex: 1;
+    }
+    .exp-price {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--sand);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+    .exp-price strong {
+      font-size: 1.35rem;
+      font-variant-numeric: tabular-nums;
+      color: var(--forest);
+    }
+    .exp-price span { font-size: 0.85rem; color: var(--ink-muted); }
+
+    /* Value */
+    .value-band {
+      background: linear-gradient(165deg, #eef4ef 0%, var(--bg) 55%, #f2ebe3 100%);
+      border-top: 1px solid rgba(26, 31, 22, 0.05);
+      border-bottom: 1px solid rgba(26, 31, 22, 0.05);
+    }
+    .value-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+    @media (min-width: 768px) {
+      .value-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .value-item {
+      padding: 1.35rem;
+      background: var(--bg-elevated);
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(26, 31, 22, 0.06);
+      box-shadow: var(--shadow);
+    }
+    .value-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--accent-soft);
+      display: grid;
+      place-items: center;
+      font-size: 1.25rem;
+      margin-bottom: 0.85rem;
+    }
+    .value-item h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      margin: 0 0 0.4rem;
+      color: var(--forest);
+    }
+    .value-item p {
+      margin: 0;
+      font-size: 0.92rem;
+      color: var(--ink-muted);
+    }
+
+    /* Testimonials */
+    .testimonial-grid {
+      display: grid;
+      gap: 1.15rem;
+    }
+    @media (min-width: 640px) {
+      .testimonial-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .quote-card {
+      background: var(--bg-elevated);
+      padding: 1.35rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(26, 31, 22, 0.06);
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    .quote-card::before {
+      content: "“";
+      font-family: var(--font-display);
+      font-size: 3rem;
+      line-height: 1;
+      color: var(--sand);
+      position: absolute;
+      top: 0.5rem;
+      right: 1rem;
+    }
+    .quote-card blockquote {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--ink);
+      position: relative;
+      z-index: 1;
+    }
+    .quote-author {
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--moss), var(--sky));
+      flex-shrink: 0;
+    }
+    .quote-author strong { display: block; font-size: 0.88rem; }
+    .quote-author span { font-size: 0.8rem; color: var(--ink-muted); }
+
+    /* Safety */
+    .safety-split {
+      display: grid;
+      gap: 2rem;
+      align-items: center;
+    }
+    @media (min-width: 900px) {
+      .safety-split { grid-template-columns: 1fr 1fr; gap: 3rem; }
+    }
+    .safety-visual {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      aspect-ratio: 4 / 3;
+    }
+    .safety-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .check-list {
+      list-style: none;
+      margin: 1.25rem 0 0;
+      padding: 0;
+    }
+    .check-list li {
+      display: flex;
+      gap: 0.75rem;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--sand);
+      font-size: 0.95rem;
+      color: var(--ink-muted);
+    }
+    .check-list li:last-child { border-bottom: none; }
+    .check-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(61, 107, 82, 0.18);
+      color: var(--forest);
+      display: grid;
+      place-items: center;
+      font-size: 0.75rem;
+      font-weight: 800;
+      margin-top: 0.1rem;
+    }
+
+    /* Scarcity */
+    .urgency {
+      background: var(--forest);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 1.75rem 1.35rem;
+      box-shadow: var(--shadow-lg);
+      display: grid;
+      gap: 1.25rem;
+    }
+    @media (min-width: 720px) {
+      .urgency {
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        padding: 1.75rem 2rem;
+      }
+    }
+    .urgency h2 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      margin: 0 0 0.35rem;
+    }
+    .urgency p { margin: 0; opacity: 0.88; font-size: 0.95rem; }
+    .spots-bar {
+      margin-top: 0.85rem;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.15);
+      overflow: hidden;
+    }
+    .spots-fill {
+      height: 100%;
+      width: 78%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #6ee7a8, #c45c2a);
+    }
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+      text-align: center;
+    }
+    .cd-unit {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-sm);
+      padding: 0.65rem 0.4rem;
+      min-width: 0;
+    }
+    .cd-unit strong {
+      display: block;
+      font-size: clamp(1.25rem, 4vw, 1.65rem);
+      font-variant-numeric: tabular-nums;
+      font-weight: 700;
+    }
+    .cd-unit span {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.75;
+    }
+
+    /* CTA footer */
+    .cta-band {
+      background: linear-gradient(180deg, var(--sand) 0%, var(--bg) 100%);
+      padding: 3rem 1.15rem 4rem;
+    }
+    .cta-card {
+      max-width: 560px;
+      margin: 0 auto;
+      background: var(--bg-elevated);
+      border-radius: var(--radius);
+      padding: 1.75rem 1.35rem 1.5rem;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid rgba(26, 31, 22, 0.06);
+    }
+    .cta-card h2 {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      text-align: center;
+      margin: 0 0 0.35rem;
+      color: var(--forest);
+    }
+    .cta-card > p {
+      text-align: center;
+      margin: 0 0 1.35rem;
+      color: var(--ink-muted);
+      font-size: 0.95rem;
+    }
+    .field { margin-bottom: 0.85rem; }
+    .field label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+      margin-bottom: 0.35rem;
+    }
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      min-height: var(--tap);
+      padding: 0 0.9rem;
+      border-radius: var(--radius-sm);
+      border: 2px solid var(--sand);
+      font-family: var(--font-ui);
+      font-size: 1rem;
+      background: var(--bg);
+    }
+    .field textarea { min-height: 100px; padding: 0.75rem 0.9rem; resize: vertical; }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--moss);
+      background: #fff;
+      outline: none;
+    }
+    .cta-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin-top: 1rem;
+    }
+    .cta-actions .btn { width: 100%; }
+    .divider-or {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--ink-muted);
+      font-size: 0.8rem;
+      margin: 0.25rem 0;
+    }
+    .divider-or::before,
+    .divider-or::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--sand);
+    }
+
+    .site-footer {
+      text-align: center;
+      padding: 2rem 1.15rem;
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+      border-top: 1px solid rgba(26, 31, 22, 0.06);
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 1.25rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(120%);
+      background: var(--ink);
+      color: #fff;
+      padding: 0.65rem 1.2rem;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: var(--shadow-lg);
+      z-index: 200;
+      opacity: 0;
+      transition: transform 0.35s var(--ease-out), opacity 0.35s;
+      pointer-events: none;
+    }
+    .toast.is-visible {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Ir para o conteúdo</a>
+
+  <div class="shell">
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="logo" href="#" aria-label="Trailhead Collective — início">
+          <span class="logo-mark" aria-hidden="true"></span>
+          <span class="logo-text">Trailhead <span>Collective</span></span>
+        </a>
+        <div class="header-cta">
+          <a class="btn btn-primary" href="#reserve">Garanta sua vaga agora</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-bg" aria-hidden="true">
+          <img
+            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1920&q=80"
+            alt=""
+            width="1920"
+            height="1080"
+            fetchpriority="high"
+          />
+        </div>
+        <div class="hero-overlay" aria-hidden="true"></div>
+        <div class="hero-content hero-animate">
+          <p class="hero-badge"><span class="dot" aria-hidden="true"></span> Novas saídas · Grupos pequenos</p>
+          <h1 id="hero-title">A natureza chama. Responda com os dois pés na trilha.</h1>
+          <p class="hero-lead">
+            Percorra cristas, desça de rapel em cânions e durma sob um céu de verdade — sempre com guias certificados, equipamento revisado e protocolos claros de segurança. Aventura em que você pode confiar.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#reserve">Garanta sua vaga agora</a>
+            <a class="btn btn-ghost" href="#experiences" style="color:#fff;border-color:rgba(255,255,255,0.35);background:rgba(255,255,255,0.08)">Ver experiências</a>
+          </div>
+          <p class="hero-note">Resposta em média em até 2 horas · Sem pagamento até confirmarmos sua data</p>
+        </div>
+      </section>
+
+      <section class="section" id="experiences" aria-labelledby="exp-title">
+        <div class="section-head">
+          <p class="section-kicker">Saídas selecionadas</p>
+          <h2 class="section-title" id="exp-title">As experiências que mais reservamos</h2>
+          <p class="section-desc">Trilha de verdade, vertical de verdade, fogueira de verdade — com preço transparente para você saber exatamente no que está entrando.</p>
+        </div>
+        <div class="card-grid">
+          <article class="exp-card">
+            <figure>
+              <img
+                src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=800&q=80"
+                alt="Trilheiros em uma montanha ao amanhecer"
+                width="800"
+                height="600"
+                loading="lazy"
+              />
+            </figure>
+            <div class="exp-card-body">
+              <div class="exp-meta">
+                <span class="pill">Dia inteiro</span>
+                <span class="pill pill-diff-mod">Moderado</span>
+              </div>
+              <h3>Travessia Alpina · Crista do Amanhecer</h3>
+              <p>Loop guiado de 14 km com vistas amplas, ritmo para diferentes condicionamentos e almoço preparado no fogão no mirante.</p>
+              <div class="exp-price">
+                <strong>R$&nbsp;949</strong>
+                <span>por pessoa · ~8&nbsp;h</span>
+              </div>
+            </div>
+          </article>
+          <article class="exp-card">
+            <figure>
+              <img
+                src="https://images.unsplash.com/photo-1522163182402-834f871fd851?auto=format&fit=crop&w=800&q=80"
+                alt="Pessoa em rapel em uma parede de rocha"
+                width="800"
+                height="600"
+                loading="lazy"
+              />
+            </figure>
+            <div class="exp-card-body">
+              <div class="exp-meta">
+                <span class="pill">Meio dia</span>
+                <span class="pill pill-diff-hard">Desafiador</span>
+              </div>
+              <h3>Técnicas Verticais · Rapel no Cânion</h3>
+              <p>Descidas progressivas com sistemas redundantes, clínica de habilidades antes da saída e proporção guia/participante que mantém todo mundo seguro.</p>
+              <div class="exp-price">
+                <strong>R$&nbsp;749</strong>
+                <span>por pessoa · ~4,5&nbsp;h</span>
+              </div>
+            </div>
+          </article>
+          <article class="exp-card">
+            <figure>
+              <img
+                src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=800&q=80"
+                alt="Barraca e equipamento de acampamento em clareira na mata"
+                width="800"
+                height="600"
+                loading="lazy"
+              />
+            </figure>
+            <div class="exp-card-body">
+              <div class="exp-meta">
+                <span class="pill">2 noites</span>
+                <span class="pill pill-diff-easy">Acessível</span>
+              </div>
+              <h3>Acampamento na Mata · Beira do Lago</h3>
+              <p>Acampamento sem deixar rastro, caminhadas interpretativas, observação do céu e opcional de nós e manejo de fogo.</p>
+              <div class="exp-price">
+                <strong>R$&nbsp;1.649</strong>
+                <span>por pessoa · 2 noites</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="value-band">
+        <div class="section">
+          <div class="section-head">
+            <p class="section-kicker">Por que a Trailhead</p>
+            <h2 class="section-title">Aventura que parece rara — porque os detalhes estão resolvidos</h2>
+            <p class="section-desc">Não vendemos “extremo para o feed”. Montamos saídas em que competência encontra encanto: você estica o limite com segurança e volta com histórias que ainda emocionam um ano depois.</p>
+          </div>
+          <div class="value-grid">
+            <div class="value-item">
+              <div class="value-icon" aria-hidden="true">🛡️</div>
+              <h3>Segurança como sistema</h3>
+              <p>Análise de risco de rota, checagem de tempo, comunicação de emergência e guias com treinamento em medicina em áreas remotas — não só carisma na corda.</p>
+            </div>
+            <div class="value-item">
+              <div class="value-icon" aria-hidden="true">🧭</div>
+              <h3>Condução que ensina</h3>
+              <p>Turmas pequenas para você de fato aprender: leitura de terreno, orientação de movimento e vivência em acampamento que dá para repetir nas suas próprias saídas.</p>
+            </div>
+            <div class="value-item">
+              <div class="value-icon" aria-hidden="true">✨</div>
+              <h3>Momentos que não dá para fingir</h3>
+              <p>A primeira luz na crista. O silêncio depois do último rapel. A chuva na lona. Protegemos o ritmo para os picos emocionais caírem no lugar certo.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="social-title">
+        <div class="section-head">
+          <p class="section-kicker">Depoimentos</p>
+          <h2 class="section-title" id="social-title">Quem voltou para a segunda rodada</h2>
+        </div>
+        <div class="testimonial-grid">
+          <figure class="quote-card">
+            <blockquote>
+              Eu estava nervosa com o trecho de rapel — o pré-briefing e as checagens redundantes deixaram tudo metódico, nada leviano. Terminei empolgada, não abalada.
+            </blockquote>
+            <figcaption class="quote-author">
+              <span class="avatar" aria-hidden="true"></span>
+              <div>
+                <strong>Jordan M.</strong>
+                <span>Designer de produto · São Paulo</span>
+              </div>
+            </figcaption>
+          </figure>
+          <figure class="quote-card">
+            <blockquote>
+              O guia leu o grupo na medida: desafio suficiente para minha parceira, orientação suficiente para mim. Só a trilha do amanhecer já valia o dobro do ingresso.
+            </blockquote>
+            <figcaption class="quote-author">
+              <span class="avatar" aria-hidden="true"></span>
+              <div>
+                <strong>Elena Vásquez</strong>
+                <span>Enfermeira especialista · Belo Horizonte</span>
+              </div>
+            </figcaption>
+          </figure>
+          <figure class="quote-card">
+            <blockquote>
+              Já fiz “team building ao ar livre” antes. Isso aqui foi diferente — habilidade de verdade, gestão de risco de verdade, e um papo na fogueira que eu ainda lembro.
+            </blockquote>
+            <figcaption class="quote-author">
+              <span class="avatar" aria-hidden="true"></span>
+              <div>
+                <strong>Chris Okonkwo</strong>
+                <span>Liderança de engenharia · Remoto</span>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="safety-title">
+        <div class="safety-split">
+          <div class="safety-visual">
+            <img
+              src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=900&q=80"
+              alt="Guia revisando equipamento com um pequeno grupo ao ar livre"
+              width="900"
+              height="675"
+              loading="lazy"
+            />
+          </div>
+          <div>
+            <p class="section-kicker">Segurança e padrões</p>
+            <h2 class="section-title" id="safety-title">Guias treinados. Equipamento auditado. Conversa franca sobre risco.</h2>
+            <p class="section-desc" style="margin-top:0.5rem">Esportes ao ar livre têm risco inerente. Reduzimos isso com julgamento profissional — e avisamos de antemão onde ficam as arestas.</p>
+            <ul class="check-list">
+              <li>
+                <span class="check-icon" aria-hidden="true">✓</span>
+                <span><strong>Guias:</strong> trilhas de formação alinhadas a referências internacionais, primeiros socorros em áreas remotas (WFR ou superior) e domínio do terreno local.</span>
+              </li>
+              <li>
+                <span class="check-icon" aria-hidden="true">✓</span>
+                <span><strong>Equipamento:</strong> cordas, cadeiras e mosquetões inspecionados; capacetes nos trechos técnicos.</span>
+              </li>
+              <li>
+                <span class="check-icon" aria-hidden="true">✓</span>
+                <span><strong>Gestão de risco:</strong> critérios de desistência, planos de evacuação e triagem de saúde dos participantes.</span>
+              </li>
+              <li>
+                <span class="check-icon" aria-hidden="true">✓</span>
+                <span><strong>Módulos de sobrevivência:</strong> opcionais de abrigo, fogo e sinalização, ensinados com ética “sem deixar rastro”.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="urgency-title">
+        <div class="urgency" id="urgency-block">
+          <div>
+            <h2 id="urgency-title">As próximas levas estão quase lotadas</h2>
+            <p>Limitamos as saídas a <strong>8 pessoas</strong> para preservar ritmo e segurança. Restam <strong id="spots-left">14 vagas</strong> nas saídas de abril e maio.</p>
+            <div class="spots-bar" role="presentation" aria-hidden="true"><div class="spots-fill"></div></div>
+          </div>
+          <div class="countdown" id="countdown" aria-live="polite">
+            <div class="cd-unit"><strong id="cd-days">00</strong><span>Dias</span></div>
+            <div class="cd-unit"><strong id="cd-hours">00</strong><span>Horas</span></div>
+            <div class="cd-unit"><strong id="cd-mins">00</strong><span>Min</span></div>
+            <div class="cd-unit"><strong id="cd-secs">00</strong><span>Seg</span></div>
+          </div>
+        </div>
+        <p style="text-align:center;margin:1rem 0 0;font-size:0.88rem;color:var(--ink-muted)">O cronômetro renova a cada rodada — reserve para travar sua data antes da próxima liberação.</p>
+      </section>
+
+      <section class="cta-band" id="reserve" aria-labelledby="reserve-title">
+        <div class="cta-card">
+          <h2 id="reserve-title">Garanta sua data</h2>
+          <p>Diga qual experiência e qual fim de semana prefere. Confirmamos disponibilidade por WhatsApp ou e-mail — como for melhor para você.</p>
+          <form id="interest-form" novalidate>
+            <div class="field">
+              <label for="name">Nome completo</label>
+              <input type="text" id="name" name="name" autocomplete="name" required placeholder="Alexandre Ribeiro" />
+            </div>
+            <div class="field">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" autocomplete="email" required placeholder="voce@exemplo.com.br" />
+            </div>
+            <div class="field">
+              <label for="experience">Experiência</label>
+              <select id="experience" name="experience" required>
+                <option value="" disabled selected>Escolha uma</option>
+                <option>Travessia Alpina · Crista do Amanhecer</option>
+                <option>Técnicas Verticais · Rapel no Cânion</option>
+                <option>Acampamento na Mata · Beira do Lago</option>
+                <option>Fim de semana de sobrevivência (lista de interesse)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="notes">Datas preferidas ou dúvidas</label>
+              <textarea id="notes" name="notes" placeholder="Ex.: fim de semana 17–18 de maio, grupo de 4"></textarea>
+            </div>
+            <div class="cta-actions">
+              <button type="submit" class="btn btn-primary">Enviar interesse</button>
+              <div class="divider-or" role="presentation">ou fale conosco agora</div>
+              <!-- Troque 15551234567 pelo seu número com código do país, só dígitos -->
+              <a class="btn btn-whatsapp" id="whatsapp-cta" href="https://wa.me/15551234567?text=" target="_blank" rel="noopener noreferrer">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.881 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Conversar no WhatsApp
+              </a>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p style="margin:0">Trailhead Collective · Landing de validação de demanda · Troque o número do WhatsApp e conecte o formulário ao seu backend ou CRM.</p>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var WHATSAPP_NUMBER = "15551234567"; // E.164 sem + — substitua pelo número comercial
+
+      function showToast(msg) {
+        var t = document.getElementById("toast");
+        t.textContent = msg;
+        t.classList.add("is-visible");
+        clearTimeout(showToast._x);
+        showToast._x = setTimeout(function () { t.classList.remove("is-visible"); }, 2800);
+      }
+
+      /* Contagem regressiva até domingo 23:59 (horário local), renova por onda */
+      function nextSundayEnd() {
+        var now = new Date();
+        var d = new Date(now);
+        var day = d.getDay();
+        var daysUntilSun = (7 - day) % 7;
+        if (daysUntilSun === 0) {
+          d.setHours(23, 59, 59, 999);
+          if (now > d) d.setDate(d.getDate() + 7);
+        } else {
+          d.setDate(d.getDate() + daysUntilSun);
+          d.setHours(23, 59, 59, 999);
+        }
+        return d;
+      }
+
+      var target = nextSundayEnd();
+
+      function tick() {
+        var now = new Date();
+        var ms = Math.max(0, target - now);
+        var s = Math.floor(ms / 1000);
+        var days = Math.floor(s / 86400);
+        var hours = Math.floor((s % 86400) / 3600);
+        var mins = Math.floor((s % 3600) / 60);
+        var secs = s % 60;
+        document.getElementById("cd-days").textContent = String(days).padStart(2, "0");
+        document.getElementById("cd-hours").textContent = String(hours).padStart(2, "0");
+        document.getElementById("cd-mins").textContent = String(mins).padStart(2, "0");
+        document.getElementById("cd-secs").textContent = String(secs).padStart(2, "0");
+        if (ms <= 0) {
+          target = nextSundayEnd();
+        }
+      }
+      tick();
+      setInterval(tick, 1000);
+
+      function buildWhatsAppPrefill() {
+        var name = (document.getElementById("name").value || "").trim();
+        var exp = document.getElementById("experience").value;
+        var notes = (document.getElementById("notes").value || "").trim();
+        var lines = [
+          "Olá, Trailhead — quero reservar uma aventura.",
+          name ? "Nome: " + name : "",
+          exp ? "Experiência: " + exp : "",
+          notes ? "Detalhes: " + notes : "",
+          "Enviado pela landing page."
+        ].filter(Boolean);
+        return encodeURIComponent(lines.join("\n"));
+      }
+
+      function updateWhatsAppLink() {
+        var a = document.getElementById("whatsapp-cta");
+        a.href = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + buildWhatsAppPrefill();
+      }
+      ["name", "experience", "notes"].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) el.addEventListener("input", updateWhatsAppLink);
+        if (el) el.addEventListener("change", updateWhatsAppLink);
+      });
+      updateWhatsAppLink();
+
+      document.getElementById("interest-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        var name = document.getElementById("name");
+        var email = document.getElementById("email");
+        var exp = document.getElementById("experience");
+        if (!name.value.trim()) {
+          name.focus();
+          showToast("Informe seu nome");
+          return;
+        }
+        if (!email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+          email.focus();
+          showToast("Informe um e-mail válido");
+          return;
+        }
+        if (!exp.value) {
+          exp.focus();
+          showToast("Escolha uma experiência");
+          return;
+        }
+        /* Validação de demanda: log no console + WhatsApp */
+        var payload = {
+          name: name.value.trim(),
+          email: email.value.trim(),
+          experience: exp.value,
+          notes: document.getElementById("notes").value.trim(),
+          ts: new Date().toISOString()
+        };
+        console.log("[Trailhead interesse]", payload);
+        showToast("Obrigado — registramos seu interesse. Fale no WhatsApp para confirmar.");
+        updateWhatsAppLink();
+      });
+    })();
+  </script>
+</body>
+</html>
