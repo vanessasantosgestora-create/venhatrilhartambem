@@ -962,7 +962,7 @@
       <section class="section" aria-labelledby="urgency-title">
         <div class="urgency" id="urgency-block">
           <div>
-            <h2 id="urgency-title">As próximas levas estão quase lotadas</h2>
+            <h2 id="urgency-title">As próximas turmas estão quase lotadas</h2>
             <p>Limitamos as saídas a <strong>8 pessoas</strong> para preservar ritmo e segurança. Restam <strong id="spots-left">14 vagas</strong> nas saídas de abril e maio.</p>
             <div class="spots-bar" role="presentation" aria-hidden="true"><div class="spots-fill"></div></div>
           </div>
@@ -979,8 +979,10 @@
       <section class="cta-band" id="reserve" aria-labelledby="reserve-title">
         <div class="cta-card">
           <h2 id="reserve-title">Simule uma reserva (demo)</h2>
-          <p>Envie o interesse por e-mail para <strong>ocodigopossivel@gmail.com</strong> — o app de e-mail do visitante abrirá com a mensagem pronta. Para <strong>orçamento</strong> ou <strong>dúvidas</strong> sobre sites, aplicativos ou uma página como esta, use o WhatsApp da Vanessa abaixo.</p>
+          <p>O formulário abaixo envia a mensagem <strong>direto para ocodigopossivel@gmail.com</strong> (serviço gratuito FormSubmit). Na primeira vez pode chegar um e-mail de ativação — confirme para passar a receber os envios. Para <strong>orçamento</strong> ou <strong>dúvidas</strong> sobre sites e apps, use o WhatsApp da Vanessa.</p>
           <form id="interest-form" novalidate>
+            <input type="hidden" name="_subject" value="Whitelabel — interesse (demo aventuras)" />
+            <input type="hidden" name="_captcha" value="false" />
             <div class="field">
               <label for="name">Nome completo</label>
               <input type="text" id="name" name="name" autocomplete="name" required placeholder="Alexandre Ribeiro" />
@@ -1001,7 +1003,7 @@
             </div>
             <div class="field">
               <label for="notes">Datas preferidas ou dúvidas</label>
-              <textarea id="notes" name="notes" placeholder="Ex.: fim de semana 17–18 de maio, grupo de 4"></textarea>
+              <textarea id="notes" name="notes" rows="4" placeholder="Ex.: fim de semana 17–18 de maio, grupo de 4"></textarea>
             </div>
             <div class="cta-actions">
               <button type="submit" class="btn btn-primary">Enviar interesse por e-mail</button>
@@ -1113,6 +1115,7 @@
 
       document.getElementById("interest-form").addEventListener("submit", function (e) {
         e.preventDefault();
+        var form = document.getElementById("interest-form");
         var nameEl = document.getElementById("name");
         var emailEl = document.getElementById("email");
         var exp = document.getElementById("experience");
@@ -1138,17 +1141,57 @@
         var nt = (notesEl.value || "").trim();
         var payload = { name: n, email: em, experience: ex, notes: nt, ts: new Date().toISOString() };
         console.log("[Whitelabel interesse]", payload);
-        var subject = encodeURIComponent("Whitelabel — interesse (demo aventuras)");
-        var body = encodeURIComponent(
-          "Nome: " + n + "\n" +
-          "E-mail: " + em + "\n" +
-          "Experiência (demo): " + ex + "\n" +
-          "Observações: " + (nt || "—") + "\n" +
-          "---\nEnviado pela landing Whitelabel."
-        );
-        window.location.href = "mailto:" + FORM_EMAIL + "?subject=" + subject + "&body=" + body;
-        showToast("Abrindo seu app de e-mail… Se não abrir, envie para ocodigopossivel@gmail.com");
-        updateWhatsAppLink();
+
+        var fd = new FormData(form);
+        fd.set("_replyto", em);
+
+        var btn = form.querySelector('button[type="submit"]');
+        var prevText = btn ? btn.textContent : "";
+        if (btn) {
+          btn.disabled = true;
+          btn.textContent = "Enviando…";
+        }
+
+        fetch("https://formsubmit.co/ajax/" + encodeURIComponent(FORM_EMAIL), {
+          method: "POST",
+          body: fd,
+          headers: { Accept: "application/json" }
+        })
+          .then(function (res) {
+            return res.json().catch(function () {
+              return {};
+            }).then(function (data) {
+              return { ok: res.ok, data: data };
+            });
+          })
+          .then(function (r) {
+            if (r.ok) {
+              showToast("Enviado para " + FORM_EMAIL + "! Confira também o spam.");
+              form.reset();
+              updateWhatsAppLink();
+              return;
+            }
+            throw new Error("FormSubmit");
+          })
+          .catch(function () {
+            var subject = encodeURIComponent("Whitelabel — interesse (demo aventuras)");
+            var body = encodeURIComponent(
+              "Nome: " + n + "\n" +
+              "E-mail: " + em + "\n" +
+              "Experiência (demo): " + ex + "\n" +
+              "Observações: " + (nt || "—") + "\n" +
+              "---\nEnviado pela landing Whitelabel."
+            );
+            window.location.href = "mailto:" + FORM_EMAIL + "?subject=" + subject + "&body=" + body;
+            showToast("Abrindo seu e-mail como alternativa…");
+            updateWhatsAppLink();
+          })
+          .finally(function () {
+            if (btn) {
+              btn.disabled = false;
+              btn.textContent = prevText;
+            }
+          });
       });
     })();
   </script>
