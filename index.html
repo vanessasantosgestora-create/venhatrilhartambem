@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Reserve aventuras guiadas ao ar livre — trilhas, rapel, acampamento e sobrevivência. Grupos pequenos, guias certificados e segurança de ponta." />
-  <title>Trailhead Collective — Aventuras guiadas ao ar livre</title>
+  <meta name="description" content="Whitelabel — demo de landing para aventuras ao ar livre. Veja os benefícios de uma página profissional para divulgar seus serviços. Vanessa dos Santos: sites e aplicativos." />
+  <title>Whitelabel — Landing demo · Aventuras ao ar livre</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Sofia+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
@@ -182,8 +182,7 @@
 
     .header-cta { flex-shrink: 0; }
     @media (max-width: 520px) {
-      .header-cta .btn { padding: 0 1rem; font-size: 0.88rem; }
-      .logo-text { display: none; }
+      .header-cta .btn { padding: 0 1rem; font-size: 0.85rem; }
     }
 
     /* Hero */
@@ -681,6 +680,23 @@
       background: var(--sand);
     }
 
+    .creator-band {
+      max-width: var(--max);
+      margin: 0 auto 2rem;
+      padding: 1.35rem 1.15rem;
+      background: linear-gradient(135deg, rgba(30, 61, 47, 0.06), rgba(196, 92, 42, 0.08));
+      border: 1px solid rgba(26, 31, 22, 0.08);
+      border-radius: var(--radius-sm);
+      text-align: center;
+    }
+    .creator-band p {
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+    .creator-band .btn { margin: 0 auto; max-width: 22rem; }
+
     .site-footer {
       text-align: center;
       padding: 2rem 1.15rem;
@@ -719,12 +735,12 @@
   <div class="shell">
     <header class="site-header">
       <div class="header-inner">
-        <a class="logo" href="#" aria-label="Trailhead Collective — início">
+        <a class="logo" href="#" aria-label="Whitelabel — início">
           <span class="logo-mark" aria-hidden="true"></span>
-          <span class="logo-text">Trailhead <span>Collective</span></span>
+          <span class="logo-text">Whitelabel</span>
         </a>
         <div class="header-cta">
-          <a class="btn btn-primary" href="#reserve">Garanta sua vaga agora</a>
+          <a class="btn btn-whatsapp js-wa-vanessa-static" id="header-whatsapp" href="https://wa.me/5511976356865" target="_blank" rel="noopener noreferrer">Orçamento · WhatsApp</a>
         </div>
       </div>
     </header>
@@ -742,16 +758,16 @@
         </div>
         <div class="hero-overlay" aria-hidden="true"></div>
         <div class="hero-content hero-animate">
-          <p class="hero-badge"><span class="dot" aria-hidden="true"></span> Novas saídas · Grupos pequenos</p>
+          <p class="hero-badge"><span class="dot" aria-hidden="true"></span> Demo whitelabel · Página profissional</p>
           <h1 id="hero-title">A natureza chama. Responda com os dois pés na trilha.</h1>
           <p class="hero-lead">
-            Percorra cristas, desça de rapel em cânions e durma sob um céu de verdade — sempre com guias certificados, equipamento revisado e protocolos claros de segurança. Aventura em que você pode confiar.
+            Esta landing é um modelo: mostra como trilhas, rapel e acampamento ganham presença séria na web. Com uma página profissional, seu negócio transmite confiança, organiza reservas e destaca o que só quem vive ao ar livre consegue oferecer.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#reserve">Garanta sua vaga agora</a>
+            <a class="btn btn-whatsapp js-wa-vanessa-static" id="hero-whatsapp" href="https://wa.me/5511976356865" target="_blank" rel="noopener noreferrer">Orçamento ou dúvidas — WhatsApp</a>
             <a class="btn btn-ghost" href="#experiences" style="color:#fff;border-color:rgba(255,255,255,0.35);background:rgba(255,255,255,0.08)">Ver experiências</a>
           </div>
-          <p class="hero-note">Resposta em média em até 2 horas · Sem pagamento até confirmarmos sua data</p>
+          <p class="hero-note">Quer algo assim com a sua marca? Fale com Vanessa dos Santos — criação e desenvolvimento de sites e aplicativos.</p>
         </div>
       </section>
 
@@ -759,7 +775,7 @@
         <div class="section-head">
           <p class="section-kicker">Saídas selecionadas</p>
           <h2 class="section-title" id="exp-title">As experiências que mais reservamos</h2>
-          <p class="section-desc">Trilha de verdade, vertical de verdade, fogueira de verdade — com preço transparente para você saber exatamente no que está entrando.</p>
+          <p class="section-desc">Valores de exemplo a R$&nbsp;0,00 — na sua versão final, você define tabelas, pacotes e integração com pagamento. O importante é a página vender a experiência com clareza.</p>
         </div>
         <div class="card-grid">
           <article class="exp-card">
@@ -780,8 +796,8 @@
               <h3>Travessia Alpina · Crista do Amanhecer</h3>
               <p>Loop guiado de 14 km com vistas amplas, ritmo para diferentes condicionamentos e almoço preparado no fogão no mirante.</p>
               <div class="exp-price">
-                <strong>R$&nbsp;949</strong>
-                <span>por pessoa · ~8&nbsp;h</span>
+                <strong>R$&nbsp;0,00</strong>
+                <span>exemplo · consulte valores · ~8&nbsp;h</span>
               </div>
             </div>
           </article>
@@ -803,8 +819,8 @@
               <h3>Técnicas Verticais · Rapel no Cânion</h3>
               <p>Descidas progressivas com sistemas redundantes, clínica de habilidades antes da saída e proporção guia/participante que mantém todo mundo seguro.</p>
               <div class="exp-price">
-                <strong>R$&nbsp;749</strong>
-                <span>por pessoa · ~4,5&nbsp;h</span>
+                <strong>R$&nbsp;0,00</strong>
+                <span>exemplo · consulte valores · ~4,5&nbsp;h</span>
               </div>
             </div>
           </article>
@@ -826,8 +842,8 @@
               <h3>Acampamento na Mata · Beira do Lago</h3>
               <p>Acampamento sem deixar rastro, caminhadas interpretativas, observação do céu e opcional de nós e manejo de fogo.</p>
               <div class="exp-price">
-                <strong>R$&nbsp;1.649</strong>
-                <span>por pessoa · 2 noites</span>
+                <strong>R$&nbsp;0,00</strong>
+                <span>exemplo · consulte valores · 2 noites</span>
               </div>
             </div>
           </article>
@@ -837,25 +853,25 @@
       <section class="value-band">
         <div class="section">
           <div class="section-head">
-            <p class="section-kicker">Por que a Trailhead</p>
-            <h2 class="section-title">Aventura que parece rara — porque os detalhes estão resolvidos</h2>
-            <p class="section-desc">Não vendemos “extremo para o feed”. Montamos saídas em que competência encontra encanto: você estica o limite com segurança e volta com histórias que ainda emocionam um ano depois.</p>
+            <p class="section-kicker">Por que investir na sua página</p>
+            <h2 class="section-title">Uma vitrine profissional para divulgar o que você faz ao ar livre</h2>
+            <p class="section-desc">Quem vende experiência precisa de credibilidade na primeira tela: fotos fortes, textos claros, provas sociais e um caminho óbvio para reserva ou contato. Uma página bem feita vira o melhor vendedor 24&nbsp;h do seu serviço.</p>
           </div>
           <div class="value-grid">
             <div class="value-item">
               <div class="value-icon" aria-hidden="true">🛡️</div>
-              <h3>Segurança como sistema</h3>
-              <p>Análise de risco de rota, checagem de tempo, comunicação de emergência e guias com treinamento em medicina em áreas remotas — não só carisma na corda.</p>
+              <h3>Confiança antes da trilha</h3>
+              <p>Depoimentos, selos de segurança e informações objetivas reduzem dúvidas e aumentam conversão — o visitante entende quem guia, como é o dia e o que levar.</p>
             </div>
             <div class="value-item">
               <div class="value-icon" aria-hidden="true">🧭</div>
-              <h3>Condução que ensina</h3>
-              <p>Turmas pequenas para você de fato aprender: leitura de terreno, orientação de movimento e vivência em acampamento que dá para repetir nas suas próprias saídas.</p>
+              <h3>Seu serviço no centro</h3>
+              <p>Pacotes, duração e dificuldade organizados como cards: o cliente compara, escolhe e chama você no WhatsApp ou preenche o formulário sem fricção.</p>
             </div>
             <div class="value-item">
               <div class="value-icon" aria-hidden="true">✨</div>
-              <h3>Momentos que não dá para fingir</h3>
-              <p>A primeira luz na crista. O silêncio depois do último rapel. A chuva na lona. Protegemos o ritmo para os picos emocionais caírem no lugar certo.</p>
+              <h3>Marca que fica na memória</h3>
+              <p>Tipografia, cores e narrativa alinhadas ao seu posicionamento — do ecoturismo ao rapel técnico — para você se destacar de landing genérica e de anúncio solto no Instagram.</p>
             </div>
           </div>
         </div>
@@ -928,7 +944,7 @@
               </li>
               <li>
                 <span class="check-icon" aria-hidden="true">✓</span>
-                <span><strong>Equipamento:</strong> cordas, cadeiras e mosquetões inspecionados; capacetes nos trechos técnicos.</span>
+                <span><strong>Equipamento:</strong> cordas, arneses e mosquetões inspecionados; capacetes nos trechos técnicos.</span>
               </li>
               <li>
                 <span class="check-icon" aria-hidden="true">✓</span>
@@ -962,8 +978,8 @@
 
       <section class="cta-band" id="reserve" aria-labelledby="reserve-title">
         <div class="cta-card">
-          <h2 id="reserve-title">Garanta sua data</h2>
-          <p>Diga qual experiência e qual fim de semana prefere. Confirmamos disponibilidade por WhatsApp ou e-mail — como for melhor para você.</p>
+          <h2 id="reserve-title">Simule uma reserva (demo)</h2>
+          <p>Envie o interesse por e-mail para <strong>ocodigopossivel@gmail.com</strong> — o app de e-mail do visitante abrirá com a mensagem pronta. Para <strong>orçamento</strong> ou <strong>dúvidas</strong> sobre sites, aplicativos ou uma página como esta, use o WhatsApp da Vanessa abaixo.</p>
           <form id="interest-form" novalidate>
             <div class="field">
               <label for="name">Nome completo</label>
@@ -988,12 +1004,11 @@
               <textarea id="notes" name="notes" placeholder="Ex.: fim de semana 17–18 de maio, grupo de 4"></textarea>
             </div>
             <div class="cta-actions">
-              <button type="submit" class="btn btn-primary">Enviar interesse</button>
-              <div class="divider-or" role="presentation">ou fale conosco agora</div>
-              <!-- Troque 15551234567 pelo seu número com código do país, só dígitos -->
-              <a class="btn btn-whatsapp" id="whatsapp-cta" href="https://wa.me/15551234567?text=" target="_blank" rel="noopener noreferrer">
+              <button type="submit" class="btn btn-primary">Enviar interesse por e-mail</button>
+              <div class="divider-or" role="presentation">Vanessa dos Santos — sites e apps</div>
+              <a class="btn btn-whatsapp" id="whatsapp-cta" href="https://wa.me/5511976356865" target="_blank" rel="noopener noreferrer">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.881 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                Conversar no WhatsApp
+                WhatsApp — orçamento ou dúvidas
               </a>
             </div>
           </form>
@@ -1001,8 +1016,13 @@
       </section>
     </main>
 
+    <div class="creator-band" id="vanessa">
+      <p><strong>Vanessa dos Santos</strong> — criadora e desenvolvedora de <strong>sites</strong> e <strong>aplicativos</strong>. Esta página <strong>Whitelabel</strong> é uma demonstração: posso adaptar layout, textos, integrações e identidade visual ao seu negócio.</p>
+      <a class="btn btn-whatsapp js-wa-vanessa-static" id="footer-whatsapp" href="https://wa.me/5511976356865" target="_blank" rel="noopener noreferrer">WhatsApp (11) 97635-6865 — falar com Vanessa</a>
+    </div>
+
     <footer class="site-footer">
-      <p style="margin:0">Trailhead Collective · Landing de validação de demanda · Troque o número do WhatsApp e conecte o formulário ao seu backend ou CRM.</p>
+      <p style="margin:0">Whitelabel · Contato projeto: <a href="mailto:ocodigopossivel@gmail.com">ocodigopossivel@gmail.com</a> · WhatsApp <a href="https://wa.me/5511976356865" target="_blank" rel="noopener noreferrer">+55 11 97635-6865</a></p>
     </footer>
   </div>
 
@@ -1012,7 +1032,11 @@
     (function () {
       "use strict";
 
-      var WHATSAPP_NUMBER = "15551234567"; // E.164 sem + — substitua pelo número comercial
+      var WHATSAPP_NUMBER = "5511976356865";
+      var FORM_EMAIL = "ocodigopossivel@gmail.com";
+      var WA_MSG_STATIC = encodeURIComponent(
+        "Olá Vanessa, vim da landing Whitelabel. Quero orçamento ou tirar uma dúvida sobre sites e aplicativos."
+      );
 
       function showToast(msg) {
         var t = document.getElementById("toast");
@@ -1061,22 +1085,25 @@
 
       function buildWhatsAppPrefill() {
         var name = (document.getElementById("name").value || "").trim();
-        var exp = document.getElementById("experience").value;
-        var notes = (document.getElementById("notes").value || "").trim();
         var lines = [
-          "Olá, Trailhead — quero reservar uma aventura.",
-          name ? "Nome: " + name : "",
-          exp ? "Experiência: " + exp : "",
-          notes ? "Detalhes: " + notes : "",
-          "Enviado pela landing page."
+          "Olá Vanessa, vim da landing Whitelabel.",
+          "Quero orçamento ou tirar dúvida sobre sites/aplicativos (ou sobre esta demo de aventuras).",
+          name ? "Meu nome: " + name : ""
         ].filter(Boolean);
         return encodeURIComponent(lines.join("\n"));
       }
 
+      function setStaticWaLinks() {
+        document.querySelectorAll(".js-wa-vanessa-static").forEach(function (a) {
+          a.href = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + WA_MSG_STATIC;
+        });
+      }
+
       function updateWhatsAppLink() {
         var a = document.getElementById("whatsapp-cta");
-        a.href = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + buildWhatsAppPrefill();
+        if (a) a.href = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + buildWhatsAppPrefill();
       }
+      setStaticWaLinks();
       ["name", "experience", "notes"].forEach(function (id) {
         var el = document.getElementById(id);
         if (el) el.addEventListener("input", updateWhatsAppLink);
@@ -1086,16 +1113,17 @@
 
       document.getElementById("interest-form").addEventListener("submit", function (e) {
         e.preventDefault();
-        var name = document.getElementById("name");
-        var email = document.getElementById("email");
+        var nameEl = document.getElementById("name");
+        var emailEl = document.getElementById("email");
         var exp = document.getElementById("experience");
-        if (!name.value.trim()) {
-          name.focus();
+        var notesEl = document.getElementById("notes");
+        if (!nameEl.value.trim()) {
+          nameEl.focus();
           showToast("Informe seu nome");
           return;
         }
-        if (!email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
-          email.focus();
+        if (!emailEl.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)) {
+          emailEl.focus();
           showToast("Informe um e-mail válido");
           return;
         }
@@ -1104,16 +1132,22 @@
           showToast("Escolha uma experiência");
           return;
         }
-        /* Validação de demanda: log no console + WhatsApp */
-        var payload = {
-          name: name.value.trim(),
-          email: email.value.trim(),
-          experience: exp.value,
-          notes: document.getElementById("notes").value.trim(),
-          ts: new Date().toISOString()
-        };
-        console.log("[Trailhead interesse]", payload);
-        showToast("Obrigado — registramos seu interesse. Fale no WhatsApp para confirmar.");
+        var n = nameEl.value.trim();
+        var em = emailEl.value.trim();
+        var ex = exp.value;
+        var nt = (notesEl.value || "").trim();
+        var payload = { name: n, email: em, experience: ex, notes: nt, ts: new Date().toISOString() };
+        console.log("[Whitelabel interesse]", payload);
+        var subject = encodeURIComponent("Whitelabel — interesse (demo aventuras)");
+        var body = encodeURIComponent(
+          "Nome: " + n + "\n" +
+          "E-mail: " + em + "\n" +
+          "Experiência (demo): " + ex + "\n" +
+          "Observações: " + (nt || "—") + "\n" +
+          "---\nEnviado pela landing Whitelabel."
+        );
+        window.location.href = "mailto:" + FORM_EMAIL + "?subject=" + subject + "&body=" + body;
+        showToast("Abrindo seu app de e-mail… Se não abrir, envie para ocodigopossivel@gmail.com");
         updateWhatsAppLink();
       });
     })();
